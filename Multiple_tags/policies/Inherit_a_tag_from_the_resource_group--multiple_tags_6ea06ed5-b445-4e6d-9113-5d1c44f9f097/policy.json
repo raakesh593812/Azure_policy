@@ -5,8 +5,8 @@
   "mode": "Indexed",
   "metadata": {
    "category": "Tags",
-   "createdBy": "06f10a49-0f83-415d-a9c1-7f39399b1950",
-   "createdOn": "2022-09-20T09:06:22.0502095Z",
+   "createdBy": "",
+   "createdOn": "",
    "updatedBy": null,
    "updatedOn": null
   },
@@ -82,5 +82,5 @@
  },
  "id": "/subscriptions/7493c606-7d9a-48cb-8bb3-eca30de998c9/providers/Microsoft.Authorization/policyDefinitions/6ea06ed5-b445-4e6d-9113-5d1c44f9f097",
  "type": "Microsoft.Authorization/policyDefinitions",
- "name": "6ea06ed5-b445-4e6d-9113-5d1c44f9f097"
+ "name": ""
 }
