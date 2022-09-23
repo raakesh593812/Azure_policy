@@ -1,0 +1,86 @@
+{
+ "properties": {
+  "displayName": "Inherit a tag from the resource group--multiple tags",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "metadata": {
+   "category": "Tags",
+   "createdBy": "06f10a49-0f83-415d-a9c1-7f39399b1950",
+   "createdOn": "2022-09-20T09:06:22.0502095Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "tagName1": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag1 Name",
+     "description": "Name of the tag, such as 'environment'"
+    },
+    "defaultValue": "environment"
+   },
+   "tagName2": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag2 Name",
+     "description": "Name of the tag, such as 'service'"
+    },
+    "defaultValue": "service"
+   },
+   "tagName3": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag3 Name",
+     "description": "Name of the tag, such as 'service'"
+    },
+    "defaultValue": "cost-center"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "[concat('tags[', parameters('tagName1'), ']')]",
+      "notEquals": "[resourceGroup().tags[parameters('tagName1')]]"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName2'), ']')]",
+      "notEquals": "[resourceGroup().tags[parameters('tagName2')]]"
+     },
+     {
+      "field": "[concat('tags[', parameters('tagName3'), ']')]",
+      "notEquals": "[resourceGroup().tags[parameters('tagName3')]]"
+     }
+    ]
+   },
+   "then": {
+    "effect": "modify",
+    "details": {
+     "roleDefinitionIds": [
+      "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+     ],
+     "operations": [
+      {
+       "operation": "addOrReplace",
+       "field": "[concat('tags[', parameters('tagName1'), ']')]",
+       "value": "[resourceGroup().tags[parameters('tagName1')]]"
+      },
+      {
+       "operation": "addOrReplace",
+       "field": "[concat('tags[', parameters('tagName2'), ']')]",
+       "value": "[resourceGroup().tags[parameters('tagName2')]]"
+      },
+      {
+       "operation": "addOrReplace",
+       "field": "[concat('tags[', parameters('tagName3'), ']')]",
+       "value": "[resourceGroup().tags[parameters('tagName3')]]"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "id": "/subscriptions/7493c606-7d9a-48cb-8bb3-eca30de998c9/providers/Microsoft.Authorization/policyDefinitions/6ea06ed5-b445-4e6d-9113-5d1c44f9f097",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "6ea06ed5-b445-4e6d-9113-5d1c44f9f097"
+}

@@ -1,0 +1,32 @@
+name: manage-azure-policy-48408e7f
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'Multiple_tags/policies/Inherit_a_tag_from_the_resource_group--multiple_tags_6ea06ed5-b445-4e6d-9113-5d1c44f9f097/**'
+#      - .github/workflows/manage-azure-policy-48408e7f.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_48408e7f}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          Multiple_tags/policies/Inherit_a_tag_from_the_resource_group--multiple_tags_6ea06ed5-b445-4e6d-9113-5d1c44f9f097/**
